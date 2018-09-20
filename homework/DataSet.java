@@ -34,7 +34,7 @@ public class DataSet {
 			stringBuff.append("\n");
 			if(row == 0) {
 				IntStream.range(0, 108).forEach(i -> stringBuff.append("-"));
-				stringBuff.append(" ");
+				stringBuff.append("\n");
 			}
 		}
 		return stringBuff.toString();
