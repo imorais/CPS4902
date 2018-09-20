@@ -35,6 +35,8 @@ public class hw1 {
 			// The DataSet class is what we made.
 			//It is different from the instance, dataSet, which we are making right now.
 			DataSet dataSet = new DataSet(datas.get(data)); 
+			// The range for this stream is 0 to the length of the row - 1.
+			// It then goes into each column and grabs that factor in that column and does the following.
 			IntStream.range(0, datas.get(data)[0].length - 1).forEach(col -> {
 				Factor factor = new Factor(datas.get(data), col);
 				ArrayList<DataSet> dataSets = new ArrayList<DataSet>();
