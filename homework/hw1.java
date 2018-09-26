@@ -1,3 +1,5 @@
+//TODO: Once i find the 1st best factor to split on, what do I do now?
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -23,42 +25,63 @@ public class hw1 {
 		{"F", "F", "F", "F", "None", "$", "F", "F", "Thai", "0-10", "F"},
 		{"T", "T", "T", "T", "Full", "$", "F", "F", "Burger", "30-60", "T"}};
 	
+	static String [][] Weather = {{"Outlook", "Temp", "Humidity", "Windy", "Play"},
+		{"sunny", "hot", "high", "F", "no"},
+		{"sunny", "hot", "high", "T", "no"},
+		{"overcast", "hot", "high", "F", "yes"},
+		{"rainy", "mild", "high", "F", "yes"},
+		{"rainy", "cool", "normal", "F", "yes"},
+		{"rainy", "cool", "normal", "T", "no"},
+		{"overcast", "cool", "normal", "T", "yes"},
+		{"sunny", "mild", "high", "F", "no"},
+		{"sunny", "cool", "normal", "F", "yes"},
+		{"rainy", "mild", "normal", "F", "yes"},
+		{"sunny", "mild", "normal", "T", "yes"},
+		{"overcast", "mild", "high", "T", "yes"},
+		{"overcast", "hot", "normal", "F", "yes"},
+		{"rainy", "mild", "high", "T", "no"}};
+	
 	public static void main(String[] args) {
 		
 		hw1 num1 = new hw1();
 		HashMap<String, String[][]> datas = new HashMap<String, String[][]>();
 		// This is using the Restaurant data set above.
-		datas.put("Target Wait", Restaurant);
+		datas.put("Target Wait ", Restaurant);
+		doEntnInfoG(datas, num1);
+		
+	}
+	
+	static void doEntnInfoG(HashMap<String, String[][]> datas, hw1 num1) {
 		// go over keys in each data set
 		datas.keySet().forEach(data -> {
-			HashMap<Factor, Double> factorInfoGain = new HashMap<Factor, Double>();
-			// The DataSet class is what we made.
-			//It is different from the instance, dataSet, which we are making right now.
-			DataSet dataSet = new DataSet(datas.get(data)); 
-			// The range for this stream is 0 to the length of the row - 1.
-			// It then goes into each column and grabs that factor in that column and does the following.
-			IntStream.range(0, datas.get(data)[0].length - 1).forEach(col -> {
-				Factor factor = new Factor(datas.get(data), col);
-				ArrayList<DataSet> dataSets = new ArrayList<DataSet>();
-				factor.getValues().stream().forEach(factorValue -> 
-					dataSets.add(num1.createDataSet(factorValue, col, datas.get(data))));
-				// Calculate summation for all the factor's entropy
-				double summation = 0;
-				for(int i = 0; i < dataSets.size(); i++) {
-					summation += ((double)(dataSets.get(i).getData().length - 1) / 
-							(datas.get(data).length - 1)) * dataSets.get(i).getEntropy();
-				}
-				// This will get the info gain
-				factorInfoGain.put(factor, dataSet.getEntropy() - summation);
-			});
-			// Display all the info
-			System.out.println("<" + data + "DATASET>:\n" + dataSet);
-			System.out.println(num1.generateInfoGainDisplayTable(factorInfoGain));
-			System.out.println("Best factor to split on is: " + num1.determineSplitOnFeature(factorInfoGain)
-					+ "\n");
-			System.out.println("\n\n");
+		// calculate info gain for each key in the data set and puts it in the hash map
+		HashMap<Factor, Double> factorInfoGain = new HashMap<Factor, Double>();
+		// The DataSet class is what we made.
+		//It is different from the instance, dataSet, which we are making right now.
+		DataSet dataSet = new DataSet(datas.get(data)); 
+		// The range for this stream is 0 to the length of the row - 1.
+		// It then goes into each column and grabs that factor in that column and does the following.
+		IntStream.range(0, datas.get(data)[0].length - 1).forEach(col -> {
+			Factor factor = new Factor(datas.get(data), col);
+			ArrayList<DataSet> dataSets = new ArrayList<DataSet>();
+			factor.getValues().stream().forEach(factorValue -> 
+				dataSets.add(num1.createDataSet(factorValue, col, datas.get(data))));
+			// Calculate summation for all the factor's entropy
+			double summation = 0;
+			for(int i = 0; i < dataSets.size(); i++) {
+				summation += ((double)(dataSets.get(i).getData().length - 1) / 
+						(datas.get(data).length - 1)) * dataSets.get(i).getEntropy();
+			}
+			// This will get the info gain
+			factorInfoGain.put(factor, dataSet.getEntropy() - summation);
 		});
-		
+		// Display all the info
+		System.out.println("<" + data + "DATASET>:\n" + dataSet);
+		System.out.println(num1.generateInfoGainDisplayTable(factorInfoGain));
+		System.out.println("Best factor to split on is: " + num1.determineSplitOnFeature(factorInfoGain)
+				+ "\n");
+		System.out.println("\n\n");
+		});
 	}
 	
 	DataSet createDataSet(FactorValue factorValue, int col, String[][] data) {
