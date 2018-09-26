@@ -128,12 +128,12 @@ public class hw1 {
 	}
 	
 	// method to delete columns
-	String [][] deleteCol(String [][] data, int deleteCol){
+	String [][] deleteCol(String [][] data, int deleteThisCol){
 		String [][] returnData = new String[data.length][data[0].length - 1];
 		for(int row = 0; row < data.length; row++) {
 			int colCount = 0;
 			for(int col = 0; col < data[0].length; col++) {
-				if(col != deleteCol) {
+				if(col != deleteThisCol) {
 					returnData[row][colCount++] = data[row][col];
 				}
 			}
