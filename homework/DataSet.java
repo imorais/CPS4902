@@ -29,7 +29,7 @@ public class DataSet {
 		for(int row = 0; row < data.length; row++) {
 			for(int col = 0; col < data[row].length; col++) {
 				stringBuff.append(data[row][col]);
-				IntStream.range(0, 14 - data[row][col].length()).forEach(i -> stringBuff.append(" "));
+				IntStream.range(0, 24 - data[row][col].length()).forEach(i -> stringBuff.append(" "));
 			}
 			stringBuff.append("\n");
 			if(row == 0) {
@@ -51,3 +51,4 @@ public class DataSet {
 	
 
 }
+
