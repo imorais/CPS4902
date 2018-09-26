@@ -1,4 +1,3 @@
-
 public class FactorValue {
 	private String name;
 	private int amount;
@@ -24,8 +23,10 @@ public class FactorValue {
 		if(object == null || (getClass() != object.getClass())) {
 			returnValue = false;
 		}
-		if(name == null || (((FactorValue) object).name != null)){
-			returnValue = false;
+		if(name == null)	{
+			if(((FactorValue) object).name != null){
+				returnValue = false;
+			} 
 		}
 		else if(!name.equals(((FactorValue) object).name)) {
 			returnValue = false;
