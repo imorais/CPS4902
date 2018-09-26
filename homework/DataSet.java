@@ -33,7 +33,7 @@ public class DataSet {
 			}
 			stringBuff.append("\n");
 			if(row == 0) {
-				IntStream.range(0, 108).forEach(i -> stringBuff.append("-"));
+				IntStream.range(0, 252).forEach(i -> stringBuff.append("-"));
 				stringBuff.append("\n");
 			}
 		}
