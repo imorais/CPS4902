@@ -56,6 +56,8 @@ public class hw1 {
 		datas.keySet().forEach(data -> {
 		// calculate info gain for each key in the data set and puts it in the hash map
 		HashMap<Factor, Double> factorInfoGain = new HashMap<Factor, Double>();
+		// This will hold the summations for each factor in a hash map. This will be used when we print the infoGain table
+		HashMap<Factor, Double> factorSummation = new HashMap<Factor, Double>();
 		// The DataSet class is what we made.
 		//It is different from the instance, dataSet, which we are making right now.
 		DataSet dataSet = new DataSet(datas.get(data)); 
@@ -72,12 +74,16 @@ public class hw1 {
 				summation += ((double)(dataSets.get(i).getData().length - 1) / 
 						(datas.get(data).length - 1)) * dataSets.get(i).getEntropy();
 			}
+			// This will put the summation into the hashmap
+			factorSummation.put(factor, summation);
 			// This will get the info gain
 			factorInfoGain.put(factor, dataSet.getEntropy() - summation);
 		});
 		// Display all the info
 		System.out.println("<" + data + "DATASET>:\n" + dataSet);
-		System.out.println(num1.generateInfoGainDisplayTable(factorInfoGain));
+		//Print the entropy
+		System.out.println("The entropy is: " + dataSet.getEntropy() + "\n");
+		System.out.println(num1.generateInfoGainDisplayTable(factorInfoGain, factorSummation));
 		System.out.println("Best factor to split on is: " + num1.determineSplitOnFeature(factorInfoGain)
 				+ "\n");
 		System.out.println("\n\n");
@@ -112,17 +118,20 @@ public class hw1 {
 	}
 	
 	// Displays table of Info Gain
-	StringBuffer generateInfoGainDisplayTable(HashMap<Factor, Double> factorsInfoGain) {
+	StringBuffer generateInfoGainDisplayTable(HashMap<Factor, Double> factorsInfoGain, HashMap<Factor, Double> factorSum) {
 		StringBuffer stringBuff = new StringBuffer();
-		stringBuff.append("Factor			Information Gain\n");
-		IntStream.range(0, 38).forEach(i -> stringBuff.append("-"));
+		stringBuff.append("Factor			Information Gain			Summation\n");
+		IntStream.range(0, 66).forEach(i -> stringBuff.append("-"));
 		stringBuff.append("\n");
 		Iterator<Factor> iterator = factorsInfoGain.keySet().iterator();
 		while(iterator.hasNext()) {
 			Factor factor = iterator.next();
 			stringBuff.append(factor);
-			IntStream.range(0, 21 - factor.getName().length()).forEach(i -> stringBuff.append(" "));
-			stringBuff.append(String.format("%.8f", factorsInfoGain.get(factor)) + "\n");
+			// This line formats the two columns nicely
+			IntStream.range(0, 25 - factor.getName().length()).forEach(i -> stringBuff.append(" "));
+			stringBuff.append(String.format("%.8f", factorsInfoGain.get(factor)));
+			IntStream.range(0, 20).forEach(j -> stringBuff.append(" "));
+			stringBuff.append(String.format("%.8f", factorSum.get(factor)) + "\n");
 		}
 		return stringBuff;
 	}
