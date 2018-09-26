@@ -7,6 +7,7 @@ public class Factor {
 	private HashSet<FactorValue> values = new HashSet<FactorValue>();
 	
 	// This is the constructor that will take in the data from the data set.
+	// column is the column of this Factor within in the data.
 	public Factor(String [][] data, int column) {
 		// The first row contains all of the factors
 		this.name = data[0][column];
