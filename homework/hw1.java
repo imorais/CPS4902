@@ -1,4 +1,10 @@
-//TODO: Once i find the 1st best factor to split on, what do I do now?
+/*
+ * Inputs: the data set inputed into the program through line 55's datas.put()
+ * Outputs: the data set given in the main method,
+ * the entropy,
+ * the information gain and remainder of each factor,
+ * and the best factor to split on.
+ */
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,7 +52,7 @@ public class hw1 {
 		hw1 num1 = new hw1();
 		HashMap<String, String[][]> datas = new HashMap<String, String[][]>();
 		// This is using the Restaurant data set above.
-		datas.put("Target Wait ", Restaurant);
+		datas.put("Target Wait ", Weather);
 		doEntnInfoG(datas, num1);
 		
 	}
