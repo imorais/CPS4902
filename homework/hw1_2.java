@@ -1,3 +1,10 @@
+/*
+ * Name: Isabel Morais
+ * Date: 10-5-18
+ * Class: CPS 4902 - 01
+ * Assignment: Hw1
+ * Purpose: To create a Decision Tree based off of a Data Set, which is a 2D array.
+ */
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -47,6 +54,7 @@ public class hw1_2 extends JFrame {
 				{"rainy", "mild", "high", "T", "no"}};
 		
 		// this map contain the data sets that can be used in this program
+		// Weather will be the default data set to be worked on first
 		static Map<String, String[][]> datas = Collections.unmodifiableMap(new HashMap<String, String[][]>() {
 			private static final long serialVersionUID = 1L;
 			{
@@ -54,7 +62,7 @@ public class hw1_2 extends JFrame {
 				put("Weather", Weather);
 			}
 		});
-		// we will initially pick the first item in the map to use in the program, which is Restaurant
+		// we will initially pick the first item in the map to use in the program, which is Weather
 		static String dataKey = datas.keySet().iterator().next();
 
 	public static void main(String[] args) throws IOException {
@@ -91,7 +99,7 @@ public class hw1_2 extends JFrame {
 					dataKey = value;
 				}
 				else {
-					System.out.println("> Error. Please enter a vaild dataset");
+					System.out.println("> Error, invalid Input. Please enter the correct entry.");
 				}
 				break;
 			case "exit":
@@ -110,7 +118,6 @@ public class hw1_2 extends JFrame {
 			System.out.println("Current Information Gain Values: " + dataSet.getInfoGains());
 			System.out.println("Best factor to split on is: " + dataSet.getSplitOnFactor() + " " + 
 					dataSet.getSplitOnFactor().getFactorValues());
-			System.out.println("-------This is a test line.-------");
 			HashMap<String, DataSet2> factorDataSets = new HashMap<String, DataSet2>();
 			dataSet.getSplitOnFactor().getFactorValues().forEach(factorValue -> 
 					factorDataSets.put(factorValue.getName(), dataSet.createDataSet(dataSet.getSplitOnFactor(), 

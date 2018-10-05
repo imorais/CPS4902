@@ -1,3 +1,11 @@
+/*
+ * Name: Isabel Morais
+ * Date: 10-5-18
+ * Class: CPS 4902 - 01
+ * Assignment: Hw1
+ * Purpose: To create a Decision Tree based off of a Data Set, which is a 2D array.
+ * Classes Involved: hw1_2.java, FactorValue2.java, Factor2.java, DataSet2.java
+ */
 
 public class FactorValue2 {
 	
