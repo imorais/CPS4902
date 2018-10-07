@@ -71,6 +71,12 @@ public class hw1_2 extends JFrame {
 				{"0", "0", "1", "1", "1"},
 				{"0", "0", "1", "0", "0"}};
 		
+		static String[][] Num8 = {{"A1", "A2", "Y"},
+				{"1", "1", "1"},
+				{"1", "0", "1"},
+				{"0", "0", "0"},
+				{"0", "1", "1"}};
+		
 		// this map contain the data sets that can be used in this program
 		// Weather will be the default data set to be worked on first
 		static Map<String, String[][]> datas = Collections.unmodifiableMap(new HashMap<String, String[][]>() {
@@ -80,6 +86,7 @@ public class hw1_2 extends JFrame {
 				put("Weather", Weather);
 				put("Number3", Num3);
 				put("Number5", Num5);
+				put("Number8", Num8);
 			}
 		});
 		// we will initially pick the first item in the map to use in the program, which is Weather
