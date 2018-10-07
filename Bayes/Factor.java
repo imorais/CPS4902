@@ -49,7 +49,7 @@ public class Factor {
 		}
 		return returnValue;
 	}
-	public Factor calcProbability(String factorValueName, HashMap<String, String> logMap) {
+	public Factor calcProb(String factorValueName, HashMap<String, String> logMap) {
 		if(getFactorValue(factorValueName) != null) {
 			// probability is the number of occurrences of a factor value over the data's length - row that contains
 			// factor names.
