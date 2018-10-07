@@ -44,6 +44,21 @@ public class Data {
 			{"known",	"new",			"short",		"home", 		"reads"},		//17
 			{"unknown",	"new",			"short",		"work", 		"reads"}};		//18
 	
+	static String[][] num7 = {{"Outlook", "Tempurature", "Humidity", "Wind", "Play Tennis"},
+			{"sunny",	 "hot", 		"high", 		"weak",		"no"},		//1
+			{"sunny",	 "hot", 		"high", 		"strong",	"no"},		//2
+			{"overcast",	 "hot", 		"high", 		"weak",		"yes"},		//3
+			{"rain",		"mild",		"high", 		"weak", 		"yes"},		//4
+			{"rain",		"cool",		"normal", 	"weak", 		"yes"},		//5
+			{"rain", 	 "cool", 	"normal", 	"strong", 	"no"},		//6
+			{"overcast",	 "cool", 	"normal", 	"strong", 	"yes"},		//7
+			{"sunny",	 "mild", 	"high", 		"weak", 		"no"},		//8
+			{"sunny", 	 "cool", 	"normal", 	"weak", 		"yes"},		//9
+			{"rain",		"mild",		"normal", 	"weak", 		"yes"},		//10
+			{"sunny",	 "mild", 	"normal", 	"strong", 	"yes"},		//11
+			{"overcast",	 "mild", 	"high", 		"strong", 	"yes"},		//12
+			{"overcast",	 "hot", 		"normal", 	"weak", 		"yes"}};		//13
+	
 	// this map contain the data sets that can be used in this program
 	// Weather will be the default data set to be worked on first
 	static Map<String, String[][]> datas = Collections.unmodifiableMap(new HashMap<String, String[][]>() {
@@ -51,6 +66,7 @@ public class Data {
 		{
 			put("Weather", Weather);
 			put("Num6", num6);
+			put("Num7", num7);
 		}
 	});
 
