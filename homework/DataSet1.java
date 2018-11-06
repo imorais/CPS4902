@@ -1,16 +1,16 @@
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 
-public class DataSet {
+public class DataSet1 {
 
 	private String data [][] = null;
 	private double entropy = 0;
-	private ArrayList<Factor> factors = null;
+	private ArrayList<Factor1> factors = null;
 	
 	// constructor
-	public DataSet(String [][] data) {
+	public DataSet1(String [][] data) {
 		this.data = data;
-		new Factor(data, data[0].length - 1).getValues().stream().forEach(factorValue -> 
+		new Factor1(data, data[0].length - 1).getValues().stream().forEach(factorValue -> 
 				entropy += minusPlog2((double)factorValue.getAmount() / (data.length - 1)));
 	}
 	
@@ -20,7 +20,7 @@ public class DataSet {
 	public double getEntropy() {
 		return entropy;
 	}
-	public ArrayList<Factor> getFactors() {
+	public ArrayList<Factor1> getFactors() {
 		return factors;
 	}
 	

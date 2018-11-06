@@ -1,8 +1,8 @@
-public class FactorValue {
+public class FactorValue1 {
 	private String name;
 	private int amount;
 	
-	public FactorValue(String name) {
+	public FactorValue1(String name) {
 		this.name = name;
 	}
 	public String getName() {
@@ -24,11 +24,11 @@ public class FactorValue {
 			returnValue = false;
 		}
 		if(name == null)	{
-			if(((FactorValue) object).name != null){
+			if(((FactorValue1) object).name != null){
 				returnValue = false;
 			} 
 		}
-		else if(!name.equals(((FactorValue) object).name)) {
+		else if(!name.equals(((FactorValue1) object).name)) {
 			returnValue = false;
 		}
 		return returnValue;

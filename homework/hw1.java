@@ -61,17 +61,17 @@ public class hw1 {
 		// go over keys in each data set
 		datas.keySet().forEach(data -> {
 		// calculate info gain for each key in the data set and puts it in the hash map
-		HashMap<Factor, Double> factorInfoGain = new HashMap<Factor, Double>();
+		HashMap<Factor1, Double> factorInfoGain = new HashMap<Factor1, Double>();
 		// This will hold the summations for each factor in a hash map. This will be used when we print the infoGain table
-		HashMap<Factor, Double> factorSummation = new HashMap<Factor, Double>();
+		HashMap<Factor1, Double> factorSummation = new HashMap<Factor1, Double>();
 		// The DataSet class is what we made.
 		//It is different from the instance, dataSet, which we are making right now.
-		DataSet dataSet = new DataSet(datas.get(data)); 
+		DataSet1 dataSet = new DataSet1(datas.get(data)); 
 		// The range for this stream is 0 to the length of the row - 1.
 		// It then goes into each column and grabs that factor in that column and does the following.
 		IntStream.range(0, datas.get(data)[0].length - 1).forEach(col -> {
-			Factor factor = new Factor(datas.get(data), col);
-			ArrayList<DataSet> dataSets = new ArrayList<DataSet>();
+			Factor1 factor = new Factor1(datas.get(data), col);
+			ArrayList<DataSet1> dataSets = new ArrayList<DataSet1>();
 			factor.getValues().stream().forEach(factorValue -> 
 				dataSets.add(num1.createDataSet(factorValue, col, datas.get(data))));
 			// Calculate summation for all the factor's entropy
@@ -96,7 +96,7 @@ public class hw1 {
 		});
 	}
 	
-	DataSet createDataSet(FactorValue factorValue, int col, String[][] data) {
+	DataSet1 createDataSet(FactorValue1 factorValue, int col, String[][] data) {
 		String [][] returnData = new String[factorValue.getAmount()+1][data[0].length];
 		returnData[0] = data[0];
 		int count = 1;
@@ -105,14 +105,14 @@ public class hw1 {
 				returnData[count++] = data[row];
 			}
 		}
-		return new DataSet(deleteCol(returnData, col));
+		return new DataSet1(deleteCol(returnData, col));
 	}
 	
-	Factor determineSplitOnFeature(HashMap<Factor, Double> factorsInfoGain) {
-		Factor splitOnFactor = null;
-		Iterator<Factor> iterator = factorsInfoGain.keySet().iterator();
+	Factor1 determineSplitOnFeature(HashMap<Factor1, Double> factorsInfoGain) {
+		Factor1 splitOnFactor = null;
+		Iterator<Factor1> iterator = factorsInfoGain.keySet().iterator();
 		while(iterator.hasNext()) {
-			Factor factor = iterator.next();
+			Factor1 factor = iterator.next();
 			if(splitOnFactor == null) {
 				splitOnFactor = factor;
 			}
@@ -124,14 +124,14 @@ public class hw1 {
 	}
 	
 	// Displays table of Info Gain
-	StringBuffer generateInfoGainDisplayTable(HashMap<Factor, Double> factorsInfoGain, HashMap<Factor, Double> factorSum) {
+	StringBuffer generateInfoGainDisplayTable(HashMap<Factor1, Double> factorsInfoGain, HashMap<Factor1, Double> factorSum) {
 		StringBuffer stringBuff = new StringBuffer();
 		stringBuff.append("Factor			Information Gain			Summation\n");
 		IntStream.range(0, 66).forEach(i -> stringBuff.append("-"));
 		stringBuff.append("\n");
-		Iterator<Factor> iterator = factorsInfoGain.keySet().iterator();
+		Iterator<Factor1> iterator = factorsInfoGain.keySet().iterator();
 		while(iterator.hasNext()) {
-			Factor factor = iterator.next();
+			Factor1 factor = iterator.next();
 			stringBuff.append(factor);
 			// This line formats the two columns nicely
 			IntStream.range(0, 25 - factor.getName().length()).forEach(i -> stringBuff.append(" "));
