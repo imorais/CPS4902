@@ -19,11 +19,6 @@
 *.tar.gz
 *.rar
 
-# eclipse
-.classpath
-.project
-.settings
-
 # bin directories
 bin/
 
